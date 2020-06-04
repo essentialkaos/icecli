@@ -1,7 +1,10 @@
 <p align="center"><a href="#readme"><img src="https://gh.kaos.st/icecli.svg"/></a></p>
 
+<p align="center"><a href="#installation">Installation</a> • <a href="#command-line-completion">Command-line completion</a> • <a href="#usage">Usage</a> • <a href="#build-status">Build Status</a> • <a href="#contributing">Contributing</a> • <a href="#license">License</a></p>
+
 <p align="center">
   <a href="https://travis-ci.com/essentialkaos/icecli"><img src="https://travis-ci.com/essentialkaos/icecli.svg?branch=master" alt="TravisCI" /></a>
+  <a href="https://codebeat.co/projects/github-com-essentialkaos-icecli-master"><img alt="codebeat badge" src="https://codebeat.co/badges/455126f6-4d86-4c9f-af47-6a4c180bb5e7" /></a>
   <a href="https://goreportcard.com/report/github.com/essentialkaos/icecli"><img src="https://goreportcard.com/badge/github.com/essentialkaos/icecli" alt="GoReportCard" /></a>
   <a href="https://essentialkaos.com/ekol"><img src="https://gh.kaos.st/ekol.svg" alt="License" /></a>
 </p>
