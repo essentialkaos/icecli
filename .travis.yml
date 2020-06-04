@@ -19,7 +19,6 @@ matrix:
     - go: tip
 
 before_install:
-  - make deps-test
   - make deps
 
 script:
