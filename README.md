@@ -2,6 +2,7 @@
 
 <p align="center">
   <a href="https://travis-ci.com/essentialkaos/icecli"><img src="https://travis-ci.com/essentialkaos/icecli.svg?branch=master" alt="TravisCI" /></a>
+  <a href="https://github.com/essentialkaos/icecli/actions?query=workflow%3ACodeQL"><img src="https://github.com/essentialkaos/icecli/workflows/CodeQL/badge.svg" /></a>
   <a href="https://codebeat.co/projects/github-com-essentialkaos-icecli-master"><img alt="codebeat badge" src="https://codebeat.co/badges/455126f6-4d86-4c9f-af47-6a4c180bb5e7" /></a>
   <a href="https://goreportcard.com/report/github.com/essentialkaos/icecli"><img src="https://goreportcard.com/badge/github.com/essentialkaos/icecli" alt="GoReportCard" /></a>
   <a href="https://essentialkaos.com/ekol"><img src="https://gh.kaos.st/ekol.svg" alt="License" /></a>
