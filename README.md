@@ -1,10 +1,10 @@
 <p align="center"><a href="#readme"><img src="https://gh.kaos.st/icecli.svg"/></a></p>
 
 <p align="center">
-  <a href="https://github.com/essentialkaos/icecli/actions"><img src="https://github.com/essentialkaos/icecli/workflows/CI/badge.svg" alt="GitHub Actions Status" /></a>
-  <a href="https://github.com/essentialkaos/icecli/actions?query=workflow%3ACodeQL"><img src="https://github.com/essentialkaos/icecli/workflows/CodeQL/badge.svg" /></a>
-  <a href="https://codebeat.co/projects/github-com-essentialkaos-icecli-master"><img alt="codebeat badge" src="https://codebeat.co/badges/455126f6-4d86-4c9f-af47-6a4c180bb5e7" /></a>
-  <a href="https://goreportcard.com/report/github.com/essentialkaos/icecli"><img src="https://goreportcard.com/badge/github.com/essentialkaos/icecli" alt="GoReportCard" /></a>
+  <a href="https://kaos.sh/w/icecli/ci"><img src="https://kaos.sh/w/icecli/ci.svg" alt="GitHub Actions CI Status" /></a>
+  <a href="https://kaos.sh/w/icecli/codeql"><img src="https://kaos.sh/w/icecli/codeql.svg" alt="GitHub Actions CodeQL Status" /></a>
+  <a href="https://kaos.sh/b/icecli"><img src="https://kaos.sh/b/455126f6-4d86-4c9f-af47-6a4c180bb5e7.svg" alt="Codebeat badge" /></a>
+  <a href="https://kaos.sh/r/icecli"><img src="https://kaos.sh/r/icecli.svg" alt="GoReportCard" /></a>
   <a href="#license"><img src="https://gh.kaos.st/apache2.svg"></a>
 </p>
 
@@ -18,22 +18,10 @@
 
 #### From source
 
-Before the initial install, allow git to use redirects for [pkg.re](https://github.com/essentialkaos/pkgre) service (_reason why you should do this described [here](https://github.com/essentialkaos/pkgre#git-support)_):
+To build the `icecli` from scratch, make sure you have a working Go 1.15+ workspace (_[instructions](https://golang.org/doc/install)_), then:
 
 ```
-git config --global http.https://pkg.re.followRedirects true
-```
-
-To build the `icecli` from scratch, make sure you have a working Go 1.13+ workspace (_[instructions](https://golang.org/doc/install)_), then:
-
-```
-go get github.com/essentialkaos/icecli
-```
-
-If you want to update `icecli` to latest stable release, do:
-
-```
-go get -u github.com/essentialkaos/icecli
+go install github.com/essentialkaos/icecli
 ```
 
 #### Prebuilt binaries
@@ -50,19 +38,19 @@ You can generate completion for `bash`, `zsh` or `fish` shell.
 
 Bash:
 ```
-[sudo] icecli --completion=bash 1> /etc/bash_completion.d/icecli
+sudo icecli --completion=bash 1> /etc/bash_completion.d/icecli
 ```
 
 
 ZSH:
 ```
-[sudo] icecli --completion=zsh 1> /usr/share/zsh/site-functions/icecli
+sudo icecli --completion=zsh 1> /usr/share/zsh/site-functions/icecli
 ```
 
 
 Fish:
 ```
-[sudo] icecli --completion=fish 1> /usr/share/fish/vendor_completions.d/icecli.fish
+sudo icecli --completion=fish 1> /usr/share/fish/vendor_completions.d/icecli.fish
 ```
 
 ### Usage
@@ -107,8 +95,8 @@ Examples
 
 | Branch | Status |
 |--------|--------|
-| `master` | [![CI](https://github.com/essentialkaos/icecli/workflows/CI/badge.svg?branch=master)](https://github.com/essentialkaos/icecli/actions) |
-| `develop` | [![CI](https://github.com/essentialkaos/icecli/workflows/CI/badge.svg?branch=develop)](https://github.com/essentialkaos/icecli/actions) |
+| `master` | [![CI](https://kaos.sh/w/icecli/ci.svg?branch=master)](https://kaos.sh/w/icecli/ci?query=branch:master) |
+| `develop` | [![CI](https://kaos.sh/w/icecli/ci.svg?branch=develop)](https://kaos.sh/w/icecli/ci?query=branch:develop) |
 
 ### Contributing
 
