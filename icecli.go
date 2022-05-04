@@ -33,7 +33,7 @@ import (
 const (
 	APP  = "icecli"
 	DESC = "Icecast CLI"
-	VER  = "1.0.1"
+	VER  = "1.0.2"
 )
 
 const (
@@ -105,9 +105,9 @@ func main() {
 		return
 	}
 
-	if args[0] == CMD_HELP {
+	if args.Get(0).ToLower().String() == CMD_HELP {
 		checkForRequiredArgs(args, 1)
-		showHelp(args[1])
+		showHelp(args.Get(0).String())
 	} else {
 		execCommand(args)
 	}
@@ -127,7 +127,7 @@ func configureUI() {
 }
 
 // execCommand executes command
-func execCommand(args []string) {
+func execCommand(args options.Arguments) {
 	var err error
 
 	client, err = ic.NewAPI(
@@ -140,26 +140,36 @@ func execCommand(args []string) {
 		printErrorExit(err.Error())
 	}
 
-	switch args[0] {
+	switch args.Get(0).ToLower().String() {
 	case CMD_STATS:
 		showServerStats()
 	case CMD_LIST_MOUNTS:
 		listMounts()
 	case CMD_LIST_CLIENTS:
 		checkForRequiredArgs(args, 1)
-		listClients(args[1])
+		listClients(args.Get(1).String())
 	case CMD_MOVE_CLIENTS:
 		checkForRequiredArgs(args, 2)
-		moveClients(args[1], args[2])
+		moveClients(
+			args.Get(1).String(),
+			args.Get(2).String(),
+		)
 	case CMD_UPDATE_META:
 		checkForRequiredArgs(args, 3)
-		updateMeta(args[1], args[2], args[3])
+		updateMeta(
+			args.Get(1).String(),
+			args.Get(2).String(),
+			args.Get(3).String(),
+		)
 	case CMD_KILL_CLIENT:
 		checkForRequiredArgs(args, 2)
-		killClient(args[1], args[2])
+		killClient(
+			args.Get(1).String(),
+			args.Get(2).String(),
+		)
 	case CMD_KILL_SOURCE:
 		checkForRequiredArgs(args, 1)
-		killSource(args[1])
+		killSource(args.Get(1).String())
 	default:
 		showUsage()
 	}
@@ -458,12 +468,15 @@ func formatMount(mount string) string {
 }
 
 // checks command for required args num
-func checkForRequiredArgs(args []string, required int) {
+func checkForRequiredArgs(args options.Arguments, required int) {
 	if len(args) >= required+1 {
 		return
 	}
 
-	printErrorExit("Wrong number of arguments for %s command", args[0])
+	printErrorExit(
+		"Wrong number of arguments for %s command",
+		args.Get(0).ToLower().String(),
+	)
 }
 
 // printError prints error message to console
