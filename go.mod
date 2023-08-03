@@ -3,7 +3,7 @@ module github.com/essentialkaos/icecli
 go 1.18
 
 require (
-	github.com/essentialkaos/ek/v12 v12.73.2
+	github.com/essentialkaos/ek/v12 v12.75.0
 	github.com/essentialkaos/go-icecast/v2 v2.0.6
 )
 
