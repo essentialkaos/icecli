@@ -38,7 +38,7 @@ import (
 const (
 	APP  = "icecli"
 	DESC = "Icecast CLI"
-	VER  = "1.2.0"
+	VER  = "1.1.0"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -124,7 +124,7 @@ func Run(gitRev string, gomod []byte) {
 		support.Collect(APP, VER).
 			WithRevision(gitRev).
 			WithDeps(deps.Extract(gomod)).
-			WithPackages(pkgs.Collect("icecast,icecast-kh")).
+			WithPackages(pkgs.Collect("icecast,icecast2,icecast-kh")).
 			Print()
 		os.Exit(0)
 	case len(args) == 0, options.GetB(OPT_HELP):
