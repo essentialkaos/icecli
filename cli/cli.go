@@ -89,6 +89,7 @@ var colorTagApp string
 // colorTagVer contains color tag for app version
 var colorTagVer string
 
+// client is icecast API client
 var client *ic.API
 
 // ////////////////////////////////////////////////////////////////////////////////// //
