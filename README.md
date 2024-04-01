@@ -18,10 +18,10 @@
 
 #### From source
 
-To build the `icecli` from scratch, make sure you have a working Go 1.16+ workspace (_[instructions](https://golang.org/doc/install)_), then:
+To build the `icecli` from scratch, make sure you have a working Go 1.18+ workspace (_[instructions](https://go.dev/doc/install)_), then:
 
-```
-go install github.com/essentialkaos/icecli
+```bash
+go install github.com/essentialkaos/icecli@latest
 ```
 
 #### Prebuilt binaries
