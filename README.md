@@ -55,41 +55,7 @@ sudo icecli --completion=fish 1> /usr/share/fish/vendor_completions.d/icecli.fis
 
 ### Usage
 
-```
-Usage: icecli {options} {command} arguments…
-
-Commands
-
-  stats                               Show Icecast statistics
-  list-mounts                         List mount points
-  list-clients mount                  List clients
-  move-clients from-mount to-mount    Move clients between mounts
-  update-meta mount artist title      Update meta for mount
-  kill-client mount client-id         Kill client connection
-  kill-source mount                   Kill source connection
-  help command                        Show detailed info about command usage
-
-Options
-
-  --host, -H host            URL of Icecast instance (default: http://127.0.0.1:8000)
-  --user, -U username        Admin username (default: admin)
-  --password, -P password    Admin password (default: hackme)
-  --no-color, -nc            Disable colors in output
-  --help, -h                 Show this help message
-  --version, -v              Show version
-
-Examples
-
-  icecli stats -H 127.0.0.1:10000
-  Show stats for server on 127.0.0.1:10000
-
-  icecli kill-client -P mYsUpPaPaSs /stream3 361
-  Detach client with ID 361 from /stream3
-
-  icecli list-clients -H 127.0.0.1:10000 -U super_admin -P mYsUpPaPaSs /stream3
-  List clients on /stream3
-
-```
+<img src=".github/images/usage.svg" />
 
 ### Build Status
 
