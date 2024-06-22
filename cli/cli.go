@@ -21,6 +21,7 @@ import (
 	"github.com/essentialkaos/ek/v12/support"
 	"github.com/essentialkaos/ek/v12/support/deps"
 	"github.com/essentialkaos/ek/v12/support/pkgs"
+	"github.com/essentialkaos/ek/v12/terminal"
 	"github.com/essentialkaos/ek/v12/terminal/tty"
 	"github.com/essentialkaos/ek/v12/timeutil"
 	"github.com/essentialkaos/ek/v12/usage"
@@ -38,7 +39,7 @@ import (
 const (
 	APP  = "icecli"
 	DESC = "Icecast CLI"
-	VER  = "1.1.0"
+	VER  = "1.1.1"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -100,13 +101,9 @@ func Run(gitRev string, gomod []byte) {
 
 	args, errs := options.Parse(optMap)
 
-	if len(errs) != 0 {
-		printError("Options parsing errors:")
-
-		for _, err := range errs {
-			printError("  %v", err)
-		}
-
+	if !errs.IsEmpty() {
+		terminal.Error("Options parsing errors:")
+		terminal.Error(errs.String())
 		os.Exit(1)
 	}
 
@@ -215,7 +212,7 @@ func execCommand(args options.Arguments) {
 		checkForRequiredArgs(args, 1)
 		killSource(args.Get(1).String())
 	default:
-		printError("Unknown or unsupported command %q", cmd)
+		terminal.Error("Unknown or unsupported command %q", cmd)
 		os.Exit(1)
 	}
 }
@@ -524,14 +521,9 @@ func checkForRequiredArgs(args options.Arguments, required int) {
 	)
 }
 
-// printError prints error message to console
-func printError(f string, a ...interface{}) {
-	fmtc.Fprintf(os.Stderr, "{r}"+f+"{!}\n", a...)
-}
-
 // printErrorExit prints error message to console and exit with error code
 func printErrorExit(f string, a ...interface{}) {
-	fmtc.Fprintf(os.Stderr, "{r}"+f+"{!}\n", a...)
+	terminal.Error(f, a...)
 	os.Exit(1)
 }
 
@@ -676,12 +668,7 @@ func printCompletion() int {
 
 // printMan prints man page
 func printMan() {
-	fmt.Println(
-		man.Generate(
-			genUsage(),
-			genAbout(""),
-		),
-	)
+	fmt.Println(man.Generate(genUsage(), genAbout("")))
 }
 
 // genUsage generates usage info
