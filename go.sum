@@ -4,8 +4,8 @@ github.com/essentialkaos/check v1.4.1 h1:SuxXzrbokPGTPWxGRnzy0hXvtb44mtVrdNxgPa1
 github.com/essentialkaos/check v1.4.1/go.mod h1:xQOYwFvnxfVZyt5Qvjoa1SxcRqu5VyP77pgALr3iu+M=
 github.com/essentialkaos/depsy v1.3.1 h1:00k9QcMsdPM4IzDaEFHsTHBD/zoM0oxtB5+dMUwbQa8=
 github.com/essentialkaos/depsy v1.3.1/go.mod h1:B5+7Jhv2a2RacOAxIKU2OeJp9QfZjwIpEEPI5X7auWM=
-github.com/essentialkaos/ek/v13 v13.15.2 h1:EnhQ+JvJVpEn8TNT0G2EupoQw+9R2hPrAFl/jjwPkC0=
-github.com/essentialkaos/ek/v13 v13.15.2/go.mod h1:ez9V1qvfXvjI6gqT24fZfkdVefHzYi6bm/c2NrD7B3s=
+github.com/essentialkaos/ek/v13 v13.15.3 h1:lDJ0qMs6wQRXWFuFRKnPvNX1SxvW2AowKgz6pRoMhAs=
+github.com/essentialkaos/ek/v13 v13.15.3/go.mod h1:ez9V1qvfXvjI6gqT24fZfkdVefHzYi6bm/c2NrD7B3s=
 github.com/essentialkaos/go-icecast/v2 v2.0.8 h1:N989ahL/Ap6FN1H51TF6el0mzfqhYt3MkwusDYZWd7c=
 github.com/essentialkaos/go-icecast/v2 v2.0.8/go.mod h1:uuUP+dbp2G913OYeiVTwsg+EvImwVIahrtRM8yyElgg=
 github.com/klauspost/compress v1.17.11 h1:In6xLpyWOi1+C7tXUUWv2ot1QvBjxevKAaI6IXrJmUc=
