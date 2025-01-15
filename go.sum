@@ -4,8 +4,8 @@ github.com/essentialkaos/check v1.4.1 h1:SuxXzrbokPGTPWxGRnzy0hXvtb44mtVrdNxgPa1
 github.com/essentialkaos/check v1.4.1/go.mod h1:xQOYwFvnxfVZyt5Qvjoa1SxcRqu5VyP77pgALr3iu+M=
 github.com/essentialkaos/depsy v1.3.1 h1:00k9QcMsdPM4IzDaEFHsTHBD/zoM0oxtB5+dMUwbQa8=
 github.com/essentialkaos/depsy v1.3.1/go.mod h1:B5+7Jhv2a2RacOAxIKU2OeJp9QfZjwIpEEPI5X7auWM=
-github.com/essentialkaos/ek/v13 v13.15.4 h1:T5CSyGn9GN6TTcyTC22Y2W8j4vW05jglzr09vjRJuaQ=
-github.com/essentialkaos/ek/v13 v13.15.4/go.mod h1:ez9V1qvfXvjI6gqT24fZfkdVefHzYi6bm/c2NrD7B3s=
+github.com/essentialkaos/ek/v13 v13.15.5 h1:p/YZz5r3lPyy841e5akERQMWGnFGgoXgls1bBSnDJL0=
+github.com/essentialkaos/ek/v13 v13.15.5/go.mod h1:YAkv7Mt856nJUQmi+/w1xxXwAR9C2/zQRJ9WNi2kOnE=
 github.com/essentialkaos/go-icecast/v2 v2.0.8 h1:N989ahL/Ap6FN1H51TF6el0mzfqhYt3MkwusDYZWd7c=
 github.com/essentialkaos/go-icecast/v2 v2.0.8/go.mod h1:uuUP+dbp2G913OYeiVTwsg+EvImwVIahrtRM8yyElgg=
 github.com/klauspost/compress v1.17.11 h1:In6xLpyWOi1+C7tXUUWv2ot1QvBjxevKAaI6IXrJmUc=
@@ -22,5 +22,5 @@ github.com/valyala/fasthttp v1.57.0 h1:Xw8SjWGEP/+wAAgyy5XTvgrWlOD1+TxbbvNADYCm1
 github.com/valyala/fasthttp v1.57.0/go.mod h1:h6ZBaPRlzpZ6O3H5t2gEk1Qi33+TmLvfwgLLp0t9CpE=
 github.com/xyproto/randomstring v1.0.5 h1:YtlWPoRdgMu3NZtP45drfy1GKoojuR7hmRcnhZqKjWU=
 github.com/xyproto/randomstring v1.0.5/go.mod h1:rgmS5DeNXLivK7YprL0pY+lTuhNQW3iGxZ18UQApw/E=
-golang.org/x/sys v0.28.0 h1:Fksou7UEQUWlKvIdsqzJmUmCX3cZuD2+P3XyyzwMhlA=
-golang.org/x/sys v0.28.0/go.mod h1:/VUhepiaJMQUp4+oa/7Zr1D23ma6VTLIYjOOTFZPUcA=
+golang.org/x/sys v0.29.0 h1:TPYlXGxvx1MGTn2GiZDhnjPA9wZzZeGKHHmKhHYvgaU=
+golang.org/x/sys v0.29.0/go.mod h1:/VUhepiaJMQUp4+oa/7Zr1D23ma6VTLIYjOOTFZPUcA=
