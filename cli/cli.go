@@ -31,7 +31,7 @@ import (
 	"github.com/essentialkaos/ek/v13/usage/man"
 	"github.com/essentialkaos/ek/v13/usage/update"
 
-	ic "github.com/essentialkaos/go-icecast/v2"
+	ic "github.com/essentialkaos/go-icecast/v3"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -103,7 +103,7 @@ func Run(gitRev string, gomod []byte) {
 
 	if !errs.IsEmpty() {
 		terminal.Error("Options parsing errors:")
-		terminal.Error(errs.Error("- "))
+		terminal.Error(errs.Error(" - "))
 		os.Exit(1)
 	}
 
