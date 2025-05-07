@@ -3,7 +3,6 @@
 <p align="center">
   <a href="https://kaos.sh/w/icecli/ci"><img src="https://kaos.sh/w/icecli/ci.svg" alt="GitHub Actions CI Status" /></a>
   <a href="https://kaos.sh/w/icecli/codeql"><img src="https://kaos.sh/w/icecli/codeql.svg" alt="GitHub Actions CodeQL Status" /></a>
-  <a href="https://kaos.sh/b/icecli"><img src="https://kaos.sh/b/455126f6-4d86-4c9f-af47-6a4c180bb5e7.svg" alt="Codebeat badge" /></a>
   <a href="https://kaos.sh/r/icecli"><img src="https://kaos.sh/r/icecli.svg" alt="GoReportCard" /></a>
   <a href="#license"><img src=".github/images/license.svg"/></a>
 </p>
@@ -18,7 +17,7 @@
 
 #### From source
 
-To build the `icecli` from scratch, make sure you have a working Go 1.21+ workspace (_[instructions](https://go.dev/doc/install)_), then:
+To build the `icecli` from scratch, make sure you have a working [Go 1.23+](https://github.com/essentialkaos/.github/blob/master/GO-VERSION-SUPPORT.md) workspace (_[instructions](https://go.dev/doc/install)_), then:
 
 ```bash
 go install github.com/essentialkaos/icecli@latest
@@ -66,10 +65,10 @@ sudo icecli --completion=fish 1> /usr/share/fish/vendor_completions.d/icecli.fis
 
 ### Contributing
 
-Before contributing to this project please read our [Contributing Guidelines](https://github.com/essentialkaos/contributing-guidelines#contributing-guidelines).
+Before contributing to this project please read our [Contributing Guidelines](https://github.com/essentialkaos/.github/blob/master/CONTRIBUTING.md).
 
 ### License
 
 [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
-<p align="center"><a href="https://essentialkaos.com"><img src="https://gh.kaos.st/ekgh.svg"/></a></p>
+<p align="center"><a href="https://kaos.dev"><img src="https://raw.githubusercontent.com/essentialkaos/.github/refs/heads/master/images/ekgh.svg"/></a></p>

@@ -2,7 +2,7 @@ package cli
 
 // ////////////////////////////////////////////////////////////////////////////////// //
 //                                                                                    //
-//                         Copyright (c) 2024 ESSENTIAL KAOS                          //
+//                         Copyright (c) 2025 ESSENTIAL KAOS                          //
 //      Apache License, Version 2.0 <https://www.apache.org/licenses/LICENSE-2.0>     //
 //                                                                                    //
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -14,24 +14,24 @@ import (
 	"strings"
 	"time"
 
-	"github.com/essentialkaos/ek/v12/fmtc"
-	"github.com/essentialkaos/ek/v12/fmtutil"
-	"github.com/essentialkaos/ek/v12/fmtutil/table"
-	"github.com/essentialkaos/ek/v12/options"
-	"github.com/essentialkaos/ek/v12/support"
-	"github.com/essentialkaos/ek/v12/support/deps"
-	"github.com/essentialkaos/ek/v12/support/pkgs"
-	"github.com/essentialkaos/ek/v12/terminal"
-	"github.com/essentialkaos/ek/v12/terminal/tty"
-	"github.com/essentialkaos/ek/v12/timeutil"
-	"github.com/essentialkaos/ek/v12/usage"
-	"github.com/essentialkaos/ek/v12/usage/completion/bash"
-	"github.com/essentialkaos/ek/v12/usage/completion/fish"
-	"github.com/essentialkaos/ek/v12/usage/completion/zsh"
-	"github.com/essentialkaos/ek/v12/usage/man"
-	"github.com/essentialkaos/ek/v12/usage/update"
+	"github.com/essentialkaos/ek/v13/fmtc"
+	"github.com/essentialkaos/ek/v13/fmtutil"
+	"github.com/essentialkaos/ek/v13/fmtutil/table"
+	"github.com/essentialkaos/ek/v13/options"
+	"github.com/essentialkaos/ek/v13/support"
+	"github.com/essentialkaos/ek/v13/support/deps"
+	"github.com/essentialkaos/ek/v13/support/pkgs"
+	"github.com/essentialkaos/ek/v13/terminal"
+	"github.com/essentialkaos/ek/v13/terminal/tty"
+	"github.com/essentialkaos/ek/v13/timeutil"
+	"github.com/essentialkaos/ek/v13/usage"
+	"github.com/essentialkaos/ek/v13/usage/completion/bash"
+	"github.com/essentialkaos/ek/v13/usage/completion/fish"
+	"github.com/essentialkaos/ek/v13/usage/completion/zsh"
+	"github.com/essentialkaos/ek/v13/usage/man"
+	"github.com/essentialkaos/ek/v13/usage/update"
 
-	ic "github.com/essentialkaos/go-icecast/v2"
+	ic "github.com/essentialkaos/go-icecast/v3"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -39,7 +39,7 @@ import (
 const (
 	APP  = "icecli"
 	DESC = "Icecast CLI"
-	VER  = "1.1.1"
+	VER  = "1.1.2"
 )
 
 // ////////////////////////////////////////////////////////////////////////////////// //
@@ -103,7 +103,7 @@ func Run(gitRev string, gomod []byte) {
 
 	if !errs.IsEmpty() {
 		terminal.Error("Options parsing errors:")
-		terminal.Error(errs.String())
+		terminal.Error(errs.Error(" - "))
 		os.Exit(1)
 	}
 
@@ -249,90 +249,90 @@ func showServerStats() {
 
 	fmtc.NewLine()
 	printServerHeader(stats.Info.ID)
-	fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Sources", fmtutil.PrettyNum(stats.Stats.Sources))
-	fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Banned IPs", fmtutil.PrettyNum(stats.Stats.BannedIPs))
-	fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Clients", fmtutil.PrettyNum(stats.Stats.Clients))
-	fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Connections", fmtutil.PrettyNum(stats.Stats.Connections))
-	fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Listeners", fmtutil.PrettyNum(stats.Stats.Listeners))
-	fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Stats", fmtutil.PrettyNum(stats.Stats.Stats))
-	fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Client Connections", fmtutil.PrettyNum(stats.Stats.ClientConnections))
-	fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "File Connections", fmtutil.PrettyNum(stats.Stats.FileConnections))
-	fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Listener Connections", fmtutil.PrettyNum(stats.Stats.ListenerConnections))
-	fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Stats Connections", fmtutil.PrettyNum(stats.Stats.StatsConnections))
-	fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Source Client Connections", fmtutil.PrettyNum(stats.Stats.SourceClientConnections))
-	fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Source Relay Connections", fmtutil.PrettyNum(stats.Stats.SourceRelayConnections))
-	fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Source Total Connections", fmtutil.PrettyNum(stats.Stats.SourceTotalConnections))
-	fmtc.Printf(
-		" {*}%-28s{!} {s}|{!} %s {s-}(%s){!}\n", "Stream Bytes Read",
+	fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Sources", fmtutil.PrettyNum(stats.Stats.Sources))
+	fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Banned IPs", fmtutil.PrettyNum(stats.Stats.BannedIPs))
+	fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Clients", fmtutil.PrettyNum(stats.Stats.Clients))
+	fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Connections", fmtutil.PrettyNum(stats.Stats.Connections))
+	fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Listeners", fmtutil.PrettyNum(stats.Stats.Listeners))
+	fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Stats", fmtutil.PrettyNum(stats.Stats.Stats))
+	fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Client Connections", fmtutil.PrettyNum(stats.Stats.ClientConnections))
+	fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "File Connections", fmtutil.PrettyNum(stats.Stats.FileConnections))
+	fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Listener Connections", fmtutil.PrettyNum(stats.Stats.ListenerConnections))
+	fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Stats Connections", fmtutil.PrettyNum(stats.Stats.StatsConnections))
+	fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Source Client Connections", fmtutil.PrettyNum(stats.Stats.SourceClientConnections))
+	fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Source Relay Connections", fmtutil.PrettyNum(stats.Stats.SourceRelayConnections))
+	fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Source Total Connections", fmtutil.PrettyNum(stats.Stats.SourceTotalConnections))
+	fmtc.Printfn(
+		" {*}%-28s{!} {s}|{!} %s {s-}(%s){!}", "Stream Bytes Read",
 		fmtutil.PrettyNum(stats.Stats.StreamBytesRead),
 		fmtutil.PrettySize(stats.Stats.StreamBytesRead),
 	)
-	fmtc.Printf(
-		" {*}%-28s{!} {s}|{!} %s {s-}(%s){!}\n", "Stream Bytes Sent",
+	fmtc.Printfn(
+		" {*}%-28s{!} {s}|{!} %s {s-}(%s){!}", "Stream Bytes Sent",
 		fmtutil.PrettyNum(stats.Stats.StreamBytesSent),
 		fmtutil.PrettySize(stats.Stats.StreamBytesSent),
 	)
 
 	for path, source := range stats.Sources {
 		showSeparator(false)
-		fmtc.Printf(" {*y}%s{!} {s-}(online: %s){!}\n", path, timeutil.PrettyDuration(time.Since(source.StreamStarted)))
+		fmtc.Printfn(" {*y}%s{!} {s-}(online: %s){!}", path, timeutil.PrettyDuration(time.Since(source.StreamStarted)))
 		showSeparator(false)
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Source IP", source.SourceIP)
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Name", formatString(source.Info.Name))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Genre", formatString(source.Genre))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Description", formatString(source.Info.Description))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Type", formatString(source.Info.Type))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "URL", formatString(source.Info.URL))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Listen URL", formatString(source.ListenURL))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "SubType", formatString(source.Info.SubType))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %t\n", "Public", source.Public)
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "User-Agent", formatString(source.UserAgent))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Source IP", source.SourceIP)
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Name", formatString(source.Info.Name))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Genre", formatString(source.Genre))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Description", formatString(source.Info.Description))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Type", formatString(source.Info.Type))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "URL", formatString(source.Info.URL))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Listen URL", formatString(source.ListenURL))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "SubType", formatString(source.Info.SubType))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %t", "Public", source.Public)
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "User-Agent", formatString(source.UserAgent))
 		showSeparator(true)
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Bitrate", fmtutil.PrettyNum(source.AudioInfo.Bitrate))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Channels", fmtutil.PrettyNum(source.AudioInfo.Channels))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s Hz\n", "SampleRate", fmtutil.PrettyNum(source.AudioInfo.SampleRate))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "CodecID", fmtutil.PrettyNum(source.AudioInfo.CodecID))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "RawInfo", formatString(source.AudioInfo.RawInfo))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Bitrate", fmtutil.PrettyNum(source.AudioInfo.Bitrate))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Channels", fmtutil.PrettyNum(source.AudioInfo.Channels))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s Hz", "SampleRate", fmtutil.PrettyNum(source.AudioInfo.SampleRate))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "CodecID", fmtutil.PrettyNum(source.AudioInfo.CodecID))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "RawInfo", formatString(source.AudioInfo.RawInfo))
 		showSeparator(true)
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Artist", formatString(source.Track.Artist))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Title", formatString(source.Track.Title))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Artwork", formatString(source.Track.Artwork))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Metadata URL", formatString(source.Track.MetadataURL))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "RawInfo", formatString(source.Track.RawInfo))
-		fmtc.Printf(
-			" {*}%-28s{!} {s}|{!} %s {s-}(%s ago){!}\n", "Metadata Updated",
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Artist", formatString(source.Track.Artist))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Title", formatString(source.Track.Title))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Artwork", formatString(source.Track.Artwork))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Metadata URL", formatString(source.Track.MetadataURL))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "RawInfo", formatString(source.Track.RawInfo))
+		fmtc.Printfn(
+			" {*}%-28s{!} {s}|{!} %s {s-}(%s ago){!}", "Metadata Updated",
 			timeutil.Format(source.MetadataUpdated, "%Y/%m/%d %H:%M:%S"),
 			timeutil.PrettyDuration(time.Since(source.MetadataUpdated)),
 		)
 		showSeparator(true)
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Listeners", fmtutil.PrettyNum(source.Stats.Listeners))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Listener Peak", fmtutil.PrettyNum(source.Stats.ListenerPeak))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Max Listeners", fmtutil.PrettyNum(source.Stats.MaxListeners))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Slow Listeners", fmtutil.PrettyNum(source.Stats.SlowListeners))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Listener Connections", fmtutil.PrettyNum(source.Stats.ListenerConnections))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Connected", fmtutil.PrettyNum(source.Stats.Connected))
-		fmtc.Printf(" {*}%-28s{!} {s}|{!} %s\n", "Queue Size", fmtutil.PrettyNum(source.Stats.QueueSize))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Listeners", fmtutil.PrettyNum(source.Stats.Listeners))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Listener Peak", fmtutil.PrettyNum(source.Stats.ListenerPeak))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Max Listeners", fmtutil.PrettyNum(source.Stats.MaxListeners))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Slow Listeners", fmtutil.PrettyNum(source.Stats.SlowListeners))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Listener Connections", fmtutil.PrettyNum(source.Stats.ListenerConnections))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Connected", fmtutil.PrettyNum(source.Stats.Connected))
+		fmtc.Printfn(" {*}%-28s{!} {s}|{!} %s", "Queue Size", fmtutil.PrettyNum(source.Stats.QueueSize))
 
-		fmtc.Printf(
-			" {*}%-28s{!} {s}|{!} %s {s-}(%s/s){!}\n", "Incoming Bitrate",
+		fmtc.Printfn(
+			" {*}%-28s{!} {s}|{!} %s {s-}(%s/s){!}", "Incoming Bitrate",
 			fmtutil.PrettyNum(source.Stats.IncomingBitrate),
 			fmtutil.PrettySize(source.Stats.IncomingBitrate),
 		)
 
-		fmtc.Printf(
-			" {*}%-28s{!} {s}|{!} %s {s-}(%s/s){!}\n", "Outgoing Bitrate",
+		fmtc.Printfn(
+			" {*}%-28s{!} {s}|{!} %s {s-}(%s/s){!}", "Outgoing Bitrate",
 			fmtutil.PrettyNum(source.Stats.OutgoingBitrate),
 			fmtutil.PrettySize(source.Stats.OutgoingBitrate),
 		)
 
-		fmtc.Printf(
-			" {*}%-28s{!} {s}|{!} %s {s-}(%s){!}\n", "Total Bytes Read",
+		fmtc.Printfn(
+			" {*}%-28s{!} {s}|{!} %s {s-}(%s){!}", "Total Bytes Read",
 			fmtutil.PrettyNum(source.Stats.TotalBytesRead),
 			fmtutil.PrettySize(source.Stats.TotalBytesRead),
 		)
 
-		fmtc.Printf(
-			" {*}%-28s{!} {s}|{!} %s {s-}(%s){!}\n", "Total Bytes Sent",
+		fmtc.Printfn(
+			" {*}%-28s{!} {s}|{!} %s {s-}(%s){!}", "Total Bytes Sent",
 			fmtutil.PrettyNum(source.Stats.TotalBytesSent),
 			fmtutil.PrettySize(source.Stats.TotalBytesSent),
 		)
@@ -417,7 +417,7 @@ func moveClients(fromMount, toMount string) {
 		printErrorExit(err.Error())
 	}
 
-	fmtc.Printf("{g}Clients successfully moved from %s to %s{!}\n", fromMount, toMount)
+	fmtc.Printfn("{g}Clients successfully moved from %s to %s{!}", fromMount, toMount)
 }
 
 // updateMeta updates metadata for given mount point
@@ -433,7 +433,7 @@ func updateMeta(mount, artist, title string) {
 		printErrorExit(err.Error())
 	}
 
-	fmtc.Printf("{g}Metadata successfully updated for %s{!}\n", mount)
+	fmtc.Printfn("{g}Metadata successfully updated for %s{!}", mount)
 }
 
 // killClient detaches client with given ID from the mount point
@@ -451,7 +451,7 @@ func killClient(mount, clientID string) {
 		printErrorExit(err.Error())
 	}
 
-	fmtc.Printf("{g}Cliend %d successfully detached from %s{!}\n", id, mount)
+	fmtc.Printfn("{g}Cliend %d successfully detached from %s{!}", id, mount)
 }
 
 // killSource detaches source from given mount point
@@ -464,7 +464,7 @@ func killSource(mount string) {
 		printErrorExit(err.Error())
 	}
 
-	fmtc.Printf("{g}Source successfully detached from %s{!}\n", mount)
+	fmtc.Printfn("{g}Source successfully detached from %s{!}", mount)
 }
 
 // printServerHeader prints header with icecast info
@@ -472,9 +472,9 @@ func printServerHeader(id string) {
 	showSeparator(false)
 
 	if id == "" {
-		fmtc.Printf(" {*}{#45}Icecast Server{!} on {*}%s{!}\n", options.GetS(OPT_HOST))
+		fmtc.Printfn(" {*}{#45}Icecast Server{!} on {*}%s{!}", options.GetS(OPT_HOST))
 	} else {
-		fmtc.Printf(" {*}{#45}Icecast Server{!} on {*}%s{!} {s-}(%s){!}\n", options.GetS(OPT_HOST), id)
+		fmtc.Printfn(" {*}{#45}Icecast Server{!} on {*}%s{!} {s-}(%s){!}", options.GetS(OPT_HOST), id)
 	}
 
 	showSeparator(false)
@@ -535,9 +535,9 @@ func helpCmdStats() {
 	fmtc.Println("{*}Description:{!}\n")
 	fmtc.Println("  Shows internal statistics kept by the Icecast server.\n")
 	fmtc.Println("{*}Usage:{!}\n")
-	fmtc.Printf("  {c*}%s{!} {y}%s{!}\n\n", APP, CMD_STATS)
+	fmtc.Printfn("  {c*}%s{!} {y}%s{!}\n", APP, CMD_STATS)
 	fmtc.Println("{*}Examples:{!}\n")
-	fmtc.Printf("  %s %s\n", APP, CMD_STATS)
+	fmtc.Printfn("  %s %s", APP, CMD_STATS)
 	fmtc.NewLine()
 }
 
@@ -547,9 +547,9 @@ func helpCmdListMounts() {
 	fmtc.Println("{*}Description:{!}\n")
 	fmtc.Println("  Shows all the currently connected mountpoints.\n")
 	fmtc.Println("{*}Usage:{!}\n")
-	fmtc.Printf("  {c*}%s{!} {y}%s{!}\n\n", APP, CMD_LIST_MOUNTS)
+	fmtc.Printfn("  {c*}%s{!} {y}%s{!}\n", APP, CMD_LIST_MOUNTS)
 	fmtc.Println("{*}Examples:{!}\n")
-	fmtc.Printf("  %s %s\n", APP, CMD_LIST_MOUNTS)
+	fmtc.Printfn("  %s %s", APP, CMD_LIST_MOUNTS)
 	fmtc.NewLine()
 }
 
@@ -560,14 +560,14 @@ func helpCmdListClients() {
 	fmtc.Println("  Shows all the clients currently connected to a specific mountpoint.")
 	fmtc.NewLine()
 	fmtc.Println("{*}Usage:{!}\n")
-	fmtc.Printf("  {c*}%s{!} {y}%s{!} {g}mount{!}\n", APP, CMD_LIST_CLIENTS)
+	fmtc.Printfn("  {c*}%s{!} {y}%s{!} {g}mount{!}", APP, CMD_LIST_CLIENTS)
 	fmtc.NewLine()
 	fmtc.Println("{*}Arguments:{!}\n")
 	fmtc.Println("  {g}mount{!} - Mount name {s-}(with or without leading slash){!}")
 	fmtc.NewLine()
 	fmtc.Println("{*}Examples:{!}\n")
-	fmtc.Printf("  %s %s /source1.ogg \n", APP, CMD_LIST_CLIENTS)
-	fmtc.Printf("  %s %s source1.ogg \n", APP, CMD_LIST_CLIENTS)
+	fmtc.Printfn("  %s %s /source1.ogg", APP, CMD_LIST_CLIENTS)
+	fmtc.Printfn("  %s %s source1.ogg", APP, CMD_LIST_CLIENTS)
 	fmtc.NewLine()
 }
 
@@ -579,15 +579,15 @@ func helpCmdMoveClients() {
 	fmtc.Println("  from one mountpoint to another.")
 	fmtc.NewLine()
 	fmtc.Println("{*}Usage:{!}\n")
-	fmtc.Printf("  {c*}%s{!} {y}%s{!} {g}from-mount to-mount{!}\n", APP, CMD_MOVE_CLIENTS)
+	fmtc.Printfn("  {c*}%s{!} {y}%s{!} {g}from-mount to-mount{!}", APP, CMD_MOVE_CLIENTS)
 	fmtc.NewLine()
 	fmtc.Println("{*}Arguments:{!}\n")
 	fmtc.Println("  {g}from-mount{!} - Source mount name {s-}(with or without leading slash){!}")
 	fmtc.Println("  {g}to-mount  {!} - Target mount name {s-}(with or without leading slash){!}")
 	fmtc.NewLine()
 	fmtc.Println("{*}Examples:{!}\n")
-	fmtc.Printf("  %s %s /source1.ogg /source2.ogg\n", APP, CMD_MOVE_CLIENTS)
-	fmtc.Printf("  %s %s source1.aac source2.aac \n", APP, CMD_MOVE_CLIENTS)
+	fmtc.Printfn("  %s %s /source1.ogg /source2.ogg", APP, CMD_MOVE_CLIENTS)
+	fmtc.Printfn("  %s %s source1.aac source2.aac", APP, CMD_MOVE_CLIENTS)
 	fmtc.NewLine()
 }
 
@@ -599,7 +599,7 @@ func helpCmdUpdateMeta() {
 	fmtc.Println("  program to update the metadata information for a particular mountpoint.")
 	fmtc.NewLine()
 	fmtc.Println("{*}Usage:{!}\n")
-	fmtc.Printf("  {c*}%s{!} {y}%s{!} {g}mount artist title{!}\n", APP, CMD_UPDATE_META)
+	fmtc.Printfn("  {c*}%s{!} {y}%s{!} {g}mount artist title{!}", APP, CMD_UPDATE_META)
 	fmtc.NewLine()
 	fmtc.Println("{*}Arguments:{!}\n")
 	fmtc.Println("  {g}mount {!} - Mount name {s-}(with or without leading slash){!}")
@@ -607,7 +607,7 @@ func helpCmdUpdateMeta() {
 	fmtc.Println("  {g}title {!} - Track title")
 	fmtc.NewLine()
 	fmtc.Println("{*}Examples:{!}\n")
-	fmtc.Printf("  %s %s \"Wretch 32\" \"Traktor (Brookes Brothers Remix)\"\n", APP, CMD_UPDATE_META)
+	fmtc.Printfn("  %s %s \"Wretch 32\" \"Traktor (Brookes Brothers Remix)\"", APP, CMD_UPDATE_META)
 	fmtc.NewLine()
 }
 
@@ -618,15 +618,15 @@ func helpCmdKillClient() {
 	fmtc.Println("  Disconnects a specific listener of a currently connected mountpoint.")
 	fmtc.NewLine()
 	fmtc.Println("{*}Usage:{!}\n")
-	fmtc.Printf("  {c*}%s{!} {y}%s{!} {g}mount{!}\n", APP, CMD_KILL_CLIENT)
+	fmtc.Printfn("  {c*}%s{!} {y}%s{!} {g}mount{!}", APP, CMD_KILL_CLIENT)
 	fmtc.NewLine()
 	fmtc.Println("{*}Arguments:{!}\n")
 	fmtc.Println("  {g}mount    {!} - Mount name {s-}(with or without leading slash){!}")
 	fmtc.Println("  {g}client-id{!} - Client ID")
 	fmtc.NewLine()
 	fmtc.Println("{*}Examples:{!}\n")
-	fmtc.Printf("  %s %s /source1.ogg 457\n", APP, CMD_KILL_CLIENT)
-	fmtc.Printf("  %s %s source1.ogg 457\n", APP, CMD_KILL_CLIENT)
+	fmtc.Printfn("  %s %s /source1.ogg 457", APP, CMD_KILL_CLIENT)
+	fmtc.Printfn("  %s %s source1.ogg 457", APP, CMD_KILL_CLIENT)
 	fmtc.NewLine()
 }
 
@@ -637,14 +637,14 @@ func helpCmdKillSource() {
 	fmtc.Println("  Disconnects a specific mountpoint from the server.")
 	fmtc.NewLine()
 	fmtc.Println("{*}Usage:{!}\n")
-	fmtc.Printf("  {c*}%s{!} {y}%s{!} {g}mount{!}\n", APP, CMD_KILL_SOURCE)
+	fmtc.Printfn("  {c*}%s{!} {y}%s{!} {g}mount{!", APP, CMD_KILL_SOURCE)
 	fmtc.NewLine()
 	fmtc.Println("{*}Arguments:{!}\n")
 	fmtc.Println("  {g}mount{!} - Mount name {s-}(with or without leading slash){!}")
 	fmtc.NewLine()
 	fmtc.Println("{*}Examples:{!}\n")
-	fmtc.Printf("  %s %s /source1.ogg \n", APP, CMD_KILL_SOURCE)
-	fmtc.Printf("  %s %s source1.ogg \n", APP, CMD_KILL_SOURCE)
+	fmtc.Printfn("  %s %s /source1.ogg", APP, CMD_KILL_SOURCE)
+	fmtc.Printfn("  %s %s source1.ogg", APP, CMD_KILL_SOURCE)
 	fmtc.NewLine()
 }
 
