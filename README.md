@@ -3,7 +3,6 @@
 <p align="center">
   <a href="https://kaos.sh/w/icecli/ci"><img src="https://kaos.sh/w/icecli/ci.svg" alt="GitHub Actions CI Status" /></a>
   <a href="https://kaos.sh/w/icecli/codeql"><img src="https://kaos.sh/w/icecli/codeql.svg" alt="GitHub Actions CodeQL Status" /></a>
-  <a href="https://kaos.sh/r/icecli"><img src="https://kaos.sh/r/icecli.svg" alt="GoReportCard" /></a>
   <a href="#license"><img src=".github/images/license.svg"/></a>
 </p>
 
